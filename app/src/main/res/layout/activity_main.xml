@@ -41,6 +41,7 @@
             android:layout_marginStart="100dp"
             android:layout_marginTop="8dp"
             android:backgroundTint="#324765"
+            android:textColor="#FEFEFE"
             android:text="Hitung"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input1" />
@@ -89,6 +90,7 @@
             android:layout_marginStart="96dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="#324765"
+            android:textColor="#FEFEFE"
             android:text="Hitung"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input2" />
@@ -119,10 +121,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="By Winky"
+        android:text="Hi Winky"
         android:textColor="#FDFDFD"
         android:textSize="50px"
-        android:fontFamily="@font/lilitaone_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
@@ -134,6 +135,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="24dp"
         android:backgroundTint="#324765"
+        android:textColor="#FEFEFE"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,6 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:backgroundTint="#324765"
+        android:textColor="#FEFEFE"
         android:text="Logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnNext"

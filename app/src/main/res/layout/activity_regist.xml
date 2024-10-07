@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="LOGIN PAGE"
+        android:text="REGIST PAGE"
         android:textColor="#324765"
         android:textSize="100px"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,33 +91,48 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/username" />
 
-            <Button
-                android:id="@+id/Login"
+            <EditText
+                android:id="@+id/confirmPass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:backgroundTint="#324765"
-                android:text="Login"
-                android:textColor="#FEFEFE"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="confirm password"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textColorHint="#333333"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.595"
-                app:layout_constraintStart_toEndOf="@+id/btnRegist"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password" />
 
             <Button
-                android:id="@+id/btnRegist"
+                android:id="@+id/regist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="56dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="40dp"
                 android:backgroundTint="#324765"
                 android:text="Regist"
                 android:textColor="#FEFEFE"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/password" />
+                app:layout_constraintTop_toBottomOf="@+id/confirmPass" />
+
+            <Button
+                android:id="@+id/Login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="#324765"
+                android:text="Login"
+                android:textColor="#FEFEFE"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.717"
+                app:layout_constraintStart_toEndOf="@+id/regist"
+                app:layout_constraintTop_toBottomOf="@+id/confirmPass" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,15 +1,21 @@
 package com.example.winky_app
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.snackbar.Snackbar
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -23,6 +29,12 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val username: TextView = findViewById(R.id.textView)
+        val sharedPref = getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
+        val usernameVal = sharedPref.getString("username", null)
+
+        username.text = "Hai, $usernameVal"
+
         val input1: EditText = findViewById(R.id.input1)
         val btnHitung1: Button = findViewById(R.id.btnHitung1)
         val result1: TextView = findViewById(R.id.result1)
@@ -30,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         btnHitung1.setOnClickListener {
             if (input1.text.toString() == "") {
-                result1.setText("NULL")
+                showSnackBar("Input Angka!")
             } else {
                 var a = input1.text.toString()
                 var b = a.toInt() * a.toInt()
@@ -45,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         btnHitung2.setOnClickListener {
             if (input1.text.toString() == "" || input2.text.toString() == "") {
-                result2.setText("NULL")
+                showSnackBar("Input Angka!")
             } else {
                 var a = input2.text.toString()
                 var b = a.toInt() * c.toInt()
@@ -65,8 +77,23 @@ class MainActivity : AppCompatActivity() {
         val btnLogout: Button = findViewById(R.id.btnLogout)
 
         btnLogout.setOnClickListener {
-            val i = Intent(this, LoginActivity::class.java)
-            startActivity(i)
+            AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Apakah Mau Logout?")
+                .setPositiveButton("Yes"){dialogInterface, which->
+                    dialogInterface.dismiss()
+                    Toast.makeText(this,"Logout", Toast.LENGTH_LONG).show()
+                    finish()
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
+    }
+
+    private fun showSnackBar(message: String) {
+        val view = this.findViewById<View>(android.R.id.content)
+        val snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
+
+        snackbar.show()
     }
 }
