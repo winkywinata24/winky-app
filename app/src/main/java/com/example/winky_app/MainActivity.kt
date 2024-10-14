@@ -82,8 +82,12 @@ class MainActivity : AppCompatActivity() {
                 .setMessage("Apakah Mau Logout?")
                 .setPositiveButton("Yes"){dialogInterface, which->
                     dialogInterface.dismiss()
+                    val editor = sharedPref.edit()
+                    editor.putString("isLogin", "0")
+                    editor.apply()
+                    val i = Intent(this,LoginActivity::class.java)
                     Toast.makeText(this,"Logout", Toast.LENGTH_LONG).show()
-                    finish()
+                    startActivity(i)
                 }
                 .setNegativeButton("No", null)
                 .show()

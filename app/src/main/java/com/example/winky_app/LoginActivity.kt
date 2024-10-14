@@ -26,6 +26,13 @@ class LoginActivity : AppCompatActivity() {
         }
 
         val sharedPref: SharedPreferences = getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
+        val isLogin = sharedPref.getString("isLogin", null)
+        if (isLogin == "1") {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+
         val username: EditText = findViewById(R.id.username)
         val password: EditText = findViewById(R.id.password)
         val login: Button = findViewById(R.id.Login)
@@ -40,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
 
             if (a == usernameVal && b == passwordVal) {
                 val editor = sharedPref.edit()
-                editor.putString("username", a)
+                editor.putString("isLogin", "1")
                 editor.apply()
                 val i = Intent(this, MainActivity::class.java)
                 startActivity(i)
