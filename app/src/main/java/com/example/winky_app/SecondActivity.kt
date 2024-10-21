@@ -13,6 +13,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.winky_app.basic_fragment.FragmentActivity
+import com.example.winky_app.welcome_screen.WelcomeScreenActivity
 import com.google.android.material.snackbar.Snackbar
 
 class SecondActivity : AppCompatActivity() {
@@ -75,6 +77,20 @@ class SecondActivity : AppCompatActivity() {
 
         btnWebView.setOnClickListener {
             val intent = Intent(this, WebViewActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnFragment: Button = findViewById(R.id.button5)
+
+        btnFragment.setOnClickListener {
+            val intent = Intent(this, FragmentActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnWelcome: Button = findViewById(R.id.button8)
+
+        btnWelcome.setOnClickListener {
+            val intent = Intent(this, WelcomeScreenActivity::class.java)
             startActivity(intent)
         }
     }

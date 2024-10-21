@@ -1,4 +1,4 @@
-package com.example.winky_app
+package com.example.winky_app.basic_kotlin
 
 fun main() {
     for (nilai: Int in 15..25) {

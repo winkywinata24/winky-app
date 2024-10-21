@@ -1,4 +1,4 @@
-package com.example.winky_app
+package com.example.winky_app.basic_kotlin
 
 fun main() {
     val cobaArray: Array<String> = arrayOf("Silahkan", "Tuliskan", "Apa", "Saja")
