@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.winky_app.basic_fragment.FragmentActivity
+import com.example.winky_app.basic_listview.ListViewActivity
+import com.example.winky_app.basic_recyclerview.RecyclerViewActivity
 import com.example.winky_app.welcome_screen.WelcomeScreenActivity
 import com.google.android.material.snackbar.Snackbar
 
@@ -91,6 +93,20 @@ class SecondActivity : AppCompatActivity() {
 
         btnWelcome.setOnClickListener {
             val intent = Intent(this, WelcomeScreenActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnListView: Button = findViewById(R.id.button9)
+
+        btnListView.setOnClickListener {
+            val intent = Intent(this, ListViewActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnRecyclerView: Button = findViewById(R.id.button12)
+
+        btnRecyclerView.setOnClickListener {
+            val intent = Intent(this, RecyclerViewActivity::class.java)
             startActivity(intent)
         }
     }
