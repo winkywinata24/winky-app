@@ -27,3 +27,12 @@ class FirstFragment : Fragment() {
         return view
     }
 }
+
+//toolbar = findViewById(R.id.toolbar)
+//setSupportActionBar(toolbar)
+//toolbar.setNavigationIcon(R.drawable.ic_black)
+//toolbar.setNavigationOnClickListener {
+//    val intent = Intent(this, MainActivity::class.java)
+//    startActivity(intent)
+//    finish()
+//}

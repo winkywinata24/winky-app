@@ -4,15 +4,15 @@
     <option name="deviceSelectionList">
       <list>
         <PersistentDeviceSelectionData>
-          <option name="api" value="32" />
+          <option name="api" value="34" />
           <option name="brand" value="google" />
-          <option name="codename" value="bluejay" />
-          <option name="id" value="bluejay" />
+          <option name="codename" value="husky" />
+          <option name="id" value="husky" />
           <option name="manufacturer" value="Google" />
-          <option name="name" value="Pixel 6a" />
-          <option name="screenDensity" value="420" />
-          <option name="screenX" value="1080" />
-          <option name="screenY" value="2400" />
+          <option name="name" value="Pixel 8 Pro" />
+          <option name="screenDensity" value="390" />
+          <option name="screenX" value="1008" />
+          <option name="screenY" value="2244" />
           <option name="selected" value="true" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
@@ -80,6 +80,17 @@
           <option name="screenDensity" value="600" />
           <option name="screenX" value="1440" />
           <option name="screenY" value="3088" />
+        </PersistentDeviceSelectionData>
+        <PersistentDeviceSelectionData>
+          <option name="api" value="32" />
+          <option name="brand" value="google" />
+          <option name="codename" value="bluejay" />
+          <option name="id" value="bluejay" />
+          <option name="manufacturer" value="Google" />
+          <option name="name" value="Pixel 6a" />
+          <option name="screenDensity" value="420" />
+          <option name="screenX" value="1080" />
+          <option name="screenY" value="2400" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
           <option name="api" value="34" />
@@ -179,17 +190,6 @@
           <option name="screenDensity" value="320" />
           <option name="screenX" value="1848" />
           <option name="screenY" value="2960" />
-        </PersistentDeviceSelectionData>
-        <PersistentDeviceSelectionData>
-          <option name="api" value="34" />
-          <option name="brand" value="google" />
-          <option name="codename" value="husky" />
-          <option name="id" value="husky" />
-          <option name="manufacturer" value="Google" />
-          <option name="name" value="Pixel 8 Pro" />
-          <option name="screenDensity" value="390" />
-          <option name="screenX" value="1008" />
-          <option name="screenY" value="2244" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
           <option name="api" value="30" />

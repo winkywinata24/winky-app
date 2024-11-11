@@ -7,11 +7,15 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.winky_app.forgot_password.ForgotActivity
+import com.example.winky_app.menu.MainActivity
+import com.example.winky_app.quiz_1.Quiz1Activity
 
 class LoginActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -59,6 +63,20 @@ class LoginActivity : AppCompatActivity() {
 
         regist.setOnClickListener {
             val i = Intent(this, RegistActivity::class.java)
+            startActivity(i)
+        }
+
+        val btnForgot: TextView = findViewById(R.id.textView3)
+
+        btnForgot.setOnClickListener {
+            val i = Intent(this, ForgotActivity::class.java)
+            startActivity(i)
+        }
+
+        val btnQuiz: Button = findViewById(R.id.button13)
+
+        btnQuiz.setOnClickListener {
+            val i = Intent(this, Quiz1Activity::class.java)
             startActivity(i)
         }
     }

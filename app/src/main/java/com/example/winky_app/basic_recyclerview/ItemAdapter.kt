@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.winky_app.MainActivity
+import com.example.winky_app.FirstActivity
 import com.example.winky_app.R
 import com.squareup.picasso.Picasso
 
@@ -32,7 +30,7 @@ class ItemAdapter (
             val context = holder.itemView.context
             Toast.makeText(context, "Anda klik item ke $position: ${item.description}", Toast.LENGTH_LONG).show()
 
-            val intent = Intent(context, MainActivity::class.java)
+            val intent = Intent(context, FirstActivity::class.java)
             context.startActivity(intent)
             println("Anda klik item ke $position: ${item.description}")
         }

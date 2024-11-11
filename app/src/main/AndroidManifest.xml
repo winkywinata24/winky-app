@@ -16,6 +16,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".quiz_1.TutorialActivity"
+            android:exported="false" />
+        <activity
+            android:name=".quiz_1.HitungActivity"
+            android:exported="false" />
+        <activity
+            android:name=".quiz_1.Quiz1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".forgot_password.ForgotActivity"
+            android:exported="false" />
+        <activity
             android:name=".basic_recyclerview.RecyclerViewActivity"
             android:exported="false" />
         <activity
@@ -52,7 +64,10 @@
             android:name=".SecondActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".FirstActivity"
+            android:exported="false" />
+        <activity
+            android:name=".menu.MainActivity"
             android:exported="false" />
     </application>
 
