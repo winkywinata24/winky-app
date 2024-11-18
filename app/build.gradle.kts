@@ -46,6 +46,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation("com.tbuonomo:dotsindicator:4.3")
-    implementation("com.squareup.picasso:picasso:2.8")
+    implementation(libs.dotsindicator)
+    implementation(libs.picasso)
 }
