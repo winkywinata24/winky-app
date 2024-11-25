@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.winky_app.R
+import com.example.winky_app.databinding.BottomSheetLayoutBinding
+import com.example.winky_app.databinding.FragmentHomeBinding
+import com.example.winky_app.databinding.FragmentMoreBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -19,46 +22,90 @@ import java.util.Date
 import java.util.Locale
 
 class MoreFragment : Fragment() {
+    private var _binding : FragmentMoreBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_more, container, false)
+//        val view = inflater.inflate(R.layout.fragment_more, container, false)
+        _binding = FragmentMoreBinding.inflate(inflater, container, false)
 
-        setupFAB(view)
+        setupFAB(binding)
 
-        return view
+        return binding.root
     }
 
-    private fun setupFAB(view: View) {
-        val fab: FloatingActionButton = view.findViewById(R.id.fab)
-        fab.setOnClickListener {
+    private fun setupFAB(binding: FragmentMoreBinding) {
+//        val fab: FloatingActionButton = view.findViewById(R.id.fab)
+        binding.fab.setOnClickListener {
             showBottomSheetDialog()
         }
     }
 
     private fun showBottomSheetDialog() {
         val bottomSheetDialog = BottomSheetDialog(requireContext())
-        val view = LayoutInflater.from(requireContext()).inflate(R.layout.bottom_sheet_layout, null)
-        bottomSheetDialog.setContentView(view)
+//        val view = LayoutInflater.from(requireContext()).inflate(R.layout.bottom_sheet_layout, null)
+        val binding = BottomSheetLayoutBinding.inflate(layoutInflater)
+        bottomSheetDialog.setContentView(binding.root)
         bottomSheetDialog.show()
 
-        initChip(view)
+        initChips(binding)
 
-        initDatePicker(view)
+        initDatePicker(binding)
 
-        initSingleChoiceDialog(view)
+        initSingleChoiceDialog(binding)
     }
 
-    private fun initSingleChoiceDialog(view: View) {
+    private fun initChips(binding: BottomSheetLayoutBinding) {
+//        val chipGroup: ChipGroup = view.findViewById(R.id.chipGroup)
+
+        val tags = listOf("Tag 1", "Tag 2", "Tag 3", "Tag 4", "Tag 5")
+        for (tag in tags) {
+            val chip = Chip(this.context).apply {
+                text = tag
+                isCheckable = true
+            }
+            binding.chipGroup.addView(chip)
+        }
+    }
+
+    private fun initDatePicker(binding: BottomSheetLayoutBinding) {
+        val datepicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText("Pilih Tanggal")
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .build()
+
+//        val inputDate : TextInputEditText = view.findViewById(R.id.inputDate)
+        binding.inputDate.setOnClickListener {
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Material Design Dialog")
+                .setMessage("Ini merupakan contoh penerapan dialog versi material design. Apakah anda ingin tetap menampilkan kalender?")
+                .setNeutralButton("Batal") { dialog, which ->
+                }
+                .setNegativeButton("Tidak") { dialog, which ->
+                }
+                .setPositiveButton("Ya") { dialog, which ->
+                    datepicker.show(parentFragmentManager, "MATERIAL_DATE_PICKER")
+                }
+                .show()
+        }
+        datepicker.addOnPositiveButtonClickListener { selection ->
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val selectedDate = dateFormat.format(Date(selection))
+            binding.inputDate.setText(selectedDate)
+        }
+    }
+
+    private fun initSingleChoiceDialog(binding: BottomSheetLayoutBinding) {
         val options = arrayOf("Pilihan 1","Pilihan 2","Pilihan 3","Pilihan 4")
         val selectedOption = 0
-        val inputOthers : TextInputEditText = view.findViewById(R.id.inputOthers)
+//        val inputOthers : TextInputEditText = view.findViewById(R.id.inputOthers)
 
-        inputOthers.setOnClickListener {
+        binding.inputOthers.setOnClickListener {
             showSingleChoiceDialog(options, selectedOption) {choice ->
-                inputOthers.setText(options[choice])
+                binding.inputOthers.setText(options[choice])
             }
         }
     }
@@ -82,45 +129,5 @@ class MoreFragment : Fragment() {
                 dialog.dismiss()
             }
             .show()
-    }
-
-    private fun initChip(view: View) {
-        val chipGroup: ChipGroup = view.findViewById(R.id.chipGroup)
-
-        val tags = listOf("Tag 1", "Tag 2", "Tag 3", "Tag 4", "Tag 5")
-        for (tag in tags) {
-            val chip = Chip(this.context).apply {
-                text = tag
-                isCheckable = true
-            }
-            chipGroup.addView(chip)
-        }
-    }
-
-    private fun initDatePicker(view: View) {
-        val datepicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Pilih Tanggal")
-            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-            .build()
-
-        val inputDate : TextInputEditText = view.findViewById(R.id.inputDate)
-        inputDate.setOnClickListener {
-            MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Material Design Dialog")
-                .setMessage("Ini merupakan contoh penerapan dialog versi material design. Apakah anda ingin tetap menampilkan kalender?")
-                .setNeutralButton("Batal") { dialog, which ->
-                }
-                .setNegativeButton("Tidak") { dialog, which ->
-                }
-                .setPositiveButton("Ya") { dialog, which ->
-                    datepicker.show(parentFragmentManager, "MATERIAL_DATE_PICKER")
-                }
-                .show()
-        }
-        datepicker.addOnPositiveButtonClickListener { selection ->
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            val selectedDate = dateFormat.format(Date(selection))
-            inputDate.setText(selectedDate)
-        }
     }
 }

@@ -8,23 +8,27 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.winky_app.R
+import com.example.winky_app.databinding.FragmentMessageBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MessageFragment : Fragment() {
+    private var _binding : FragmentMessageBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_message, container, false)
+//        val view = inflater.inflate(R.layout.fragment_message, container, false)
+        _binding = FragmentMessageBinding.inflate(inflater, container, false)
+//
+//        val tabLayout: TabLayout = view.findViewById(R.id.tabLayout)
+//        val viewPager: ViewPager2 = view.findViewById(R.id.viewPager)
 
-        val tabLayout: TabLayout = view.findViewById(R.id.tabLayout)
-        val viewPager: ViewPager2 = view.findViewById(R.id.viewPager)
+        binding.viewPager.adapter = MessageTabAdapter(requireActivity())
 
-        viewPager.adapter = MessageTabAdapter(requireActivity())
-
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> {
                     tab.text = "Notification"
@@ -67,6 +71,6 @@ class MessageFragment : Fragment() {
                 }
             }
         }.attach()
-        return view
+        return binding.root
     }
 }
