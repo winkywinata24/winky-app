@@ -48,6 +48,8 @@ class NotificationFragment : Fragment() {
 
         getProduct()
 
+        createProduct()
+
         return binding.root
     }
 
@@ -107,7 +109,7 @@ class NotificationFragment : Fragment() {
     }
 
     private fun createProduct() {
-        val name = "Buku"
+        val name = "Buku Ievan"
         val desc = "Ini Deskripsi Buku"
         val price = 250000
 

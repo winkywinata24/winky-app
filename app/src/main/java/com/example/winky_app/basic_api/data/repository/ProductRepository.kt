@@ -7,7 +7,7 @@ import com.example.winky_app.basic_api.data.network.ApiService
 class ProductRepository(
     private val api: ApiService,
 ) {
-    private val tokenBearer = "Bearer x6WxpZW2lCyQWgXubWOCgGgdB1lle01b64-wbDBu4L6asNJeSA"
+    private val tokenBearer = "Bearer BKYVnXB_Na6lPaUiPbXLakTHjkumP5UNj89UTtLpZnLI_b3dIw"
 
     suspend fun fetchProduct(): ProductResponse {
         return api.getProducts(tokenBearer)
