@@ -1,13 +1,10 @@
-package com.example.winky_app.menu.home
+package com.example.winky_app.basic_api.ui.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.winky_app.R
+import com.example.winky_app.basic_api.data.model.NewsHorizontalModel
 import com.example.winky_app.databinding.HomeHorizontalItemBinding
 import com.squareup.picasso.Picasso
 

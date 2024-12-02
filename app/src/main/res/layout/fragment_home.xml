@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menu.home.HomeFragment">
+    tools:context=".basic_api.ui.view.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/autoSlider"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </androidx.cardview.widget.CardView>
 
@@ -34,15 +34,15 @@
             android:layout_marginVertical="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_auto"/>
+            app:layout_constraintTop_toBottomOf="@id/card_auto" />
 
         <TextView
             android:id="@+id/welcomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="18dp"
             android:text="Selamat Datang"
+            android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/worn_indicator" />
@@ -57,7 +57,7 @@
 
             <include
                 android:id="@+id/include_home_menu_grid"
-                layout="@layout/home_menu_grid"/>
+                layout="@layout/home_menu_grid" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -71,14 +71,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/grid_menu_home" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/newHoriList"
+        <LinearLayout
+            android:id="@+id/layout_newHoriList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/newsText"/>
+            app:layout_constraintTop_toBottomOf="@id/newsText">
 
+            <include
+                android:id="@+id/empty_newHoriList"
+                layout="@layout/item_empty"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/loading_newHoriList"
+                layout="@layout/item_loading"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/error_newHoriList"
+                layout="@layout/item_error"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/newHoriList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

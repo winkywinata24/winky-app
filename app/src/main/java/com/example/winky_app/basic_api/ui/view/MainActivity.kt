@@ -1,4 +1,4 @@
-package com.example.winky_app.menu
+package com.example.winky_app.basic_api.ui.view
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -7,9 +7,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.winky_app.R
-import com.example.winky_app.menu.home.HomeFragment
-import com.example.winky_app.menu.messanger.MessageFragment
-import com.example.winky_app.menu.more.MoreFragment
+import com.example.winky_app.basic_api.ui.view.home.HomeFragment
+import com.example.winky_app.basic_api.ui.view.messanger.MessageFragment
+import com.example.winky_app.basic_api.ui.view.more.MoreFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

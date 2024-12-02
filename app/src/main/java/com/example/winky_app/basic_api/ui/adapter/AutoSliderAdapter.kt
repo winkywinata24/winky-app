@@ -1,4 +1,4 @@
-package com.example.winky_app.menu.home
+package com.example.winky_app.basic_api.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View

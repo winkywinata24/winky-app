@@ -1,4 +1,4 @@
-package com.example.winky_app.menu.messanger
+package com.example.winky_app.basic_api.ui.view.messanger
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

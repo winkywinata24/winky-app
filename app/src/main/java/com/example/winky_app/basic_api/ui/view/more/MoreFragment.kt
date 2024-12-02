@@ -1,22 +1,16 @@
-package com.example.winky_app.menu.more
+package com.example.winky_app.basic_api.ui.view.more
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.winky_app.R
 import com.example.winky_app.databinding.BottomSheetLayoutBinding
-import com.example.winky_app.databinding.FragmentHomeBinding
 import com.example.winky_app.databinding.FragmentMoreBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.textfield.TextInputEditText
-import java.lang.StackWalker.Option
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

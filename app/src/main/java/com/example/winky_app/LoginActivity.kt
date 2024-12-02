@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.winky_app.forgot_password.ForgotActivity
-import com.example.winky_app.menu.MainActivity
+import com.example.winky_app.basic_api.ui.view.MainActivity
 import com.example.winky_app.quiz_1.Quiz1Activity
 
 class LoginActivity : AppCompatActivity() {
