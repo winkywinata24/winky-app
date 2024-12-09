@@ -5,20 +5,35 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.winky_app.basic_api.data.firebase.FirebaseAuthService
+import com.example.winky_app.basic_api.data.repository.FirebaseRepository
 import com.example.winky_app.forgot_password.ForgotActivity
 import com.example.winky_app.basic_api.ui.view.MainActivity
+import com.example.winky_app.basic_api.ui.viewModel.FirebaseViewModel
+import com.example.winky_app.basic_api.utils.Resource
+import com.example.winky_app.basic_api.utils.ViewModelFactory
 import com.example.winky_app.quiz_1.Quiz1Activity
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+
+    private val firebaseViewModel: FirebaseViewModel by viewModels {
+        ViewModelFactory(FirebaseViewModel::class.java) {
+            val repository = FirebaseRepository(FirebaseAuthService())
+            FirebaseViewModel(repository)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,8 +45,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         val sharedPref: SharedPreferences = getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
-        val isLogin = sharedPref.getString("isLogin", null)
-        if (isLogin == "1") {
+//        val isLogin = sharedPref.getString("isLogin", null)
+        val isLoggedIn = FirebaseAuth.getInstance().currentUser != null
+        if (isLoggedIn) {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
@@ -45,20 +61,45 @@ class LoginActivity : AppCompatActivity() {
         val usernameVal = sharedPref.getString("username", null)
         val passwordVal = sharedPref.getString("password", null)
 
-        login.setOnClickListener {
-            val a = username.text.toString()
-            val b = password.text.toString()
+        firebaseViewModel.loginState.observe(this) { resource ->
+            when (resource) {
+                is Resource.Loading -> {
+                    Log.d("Firebase User Authentication","Mengirim Username Password...")
+                }
+                is Resource.Success -> {
+                    Log.d("Firebase User Authetication","Halo ${firebaseViewModel.getCurrentUser().toString()}")
+                    val user = resource.data
+                    val editor = sharedPref.edit()
 
-            if (a == usernameVal && b == passwordVal) {
-                val editor = sharedPref.edit()
-                editor.putString("isLogin", "1")
-                editor.apply()
-                val i = Intent(this, MainActivity::class.java)
-                startActivity(i)
-                Toast.makeText(this,"Login", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this,"Salah Input", Toast.LENGTH_LONG).show()
+                    //Tidak perlu lagi, karena sudah dihandle oleh FirebaseAuth.getInstance().currentUser
+                    //editor.putString("isLogin", "1")
+
+                    editor.putString("username", user?.username)
+                    editor.apply()
+
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                is Resource.Error -> {
+                    Toast.makeText(this, resource.message, Toast.LENGTH_SHORT).show()
+                }
+
+                else -> {}
             }
+        }
+
+        login.setOnClickListener {
+            val username = username.text.toString().trim()
+            val password = password.text.toString().trim()
+
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Username dan Password tidak boleh kosong", Toast.LENGTH_SHORT)
+                    .show()
+                return@setOnClickListener
+            }
+
+            firebaseViewModel.login(username, password)
         }
 
         regist.setOnClickListener {

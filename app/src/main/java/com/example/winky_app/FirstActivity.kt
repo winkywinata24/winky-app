@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
 class FirstActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -81,12 +82,14 @@ class FirstActivity : AppCompatActivity() {
                 .setMessage("Apakah Mau Logout?")
                 .setPositiveButton("Yes"){dialogInterface, which->
                     dialogInterface.dismiss()
-                    val editor = sharedPref.edit()
-                    editor.putString("isLogin", "0")
-                    editor.apply()
+//                    val editor = sharedPref.edit()
+//                    editor.putString("isLogin", "0")
+//                    editor.apply()
                     val i = Intent(this,LoginActivity::class.java)
-                    Toast.makeText(this,"Logout", Toast.LENGTH_LONG).show()
+                    i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(i)
+                    FirebaseAuth.getInstance().signOut()
+                    Toast.makeText(this,"Logout", Toast.LENGTH_LONG).show()
                 }
                 .setNegativeButton("No", null)
                 .show()

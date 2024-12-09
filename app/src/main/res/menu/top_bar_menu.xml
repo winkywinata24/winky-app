@@ -16,4 +16,9 @@
         android:title="Profile"
         android:icon="@drawable/ic_profile"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_profile"
+        app:showAsAction="never"/>
 </menu>

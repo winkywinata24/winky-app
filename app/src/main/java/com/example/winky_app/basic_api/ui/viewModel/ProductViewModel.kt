@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.winky_app.basic_api.data.local.entity.ProductEntity
 import com.example.winky_app.basic_api.data.model.ProductPostRequest
 import com.example.winky_app.basic_api.data.model.ProductResponse
 import com.example.winky_app.basic_api.data.repository.ProductRepository
@@ -59,6 +60,45 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
             }
         } else {
             _createStatus.postValue(Resource.Error("No internet connection"))
+        }
+    }
+
+    private val _dataLocal = MutableLiveData<Resource<List<ProductEntity>>>()
+    val dataLocal: LiveData<Resource<List<ProductEntity>>> get() = _dataLocal
+    fun getProductsLocal(forceRefresh: Boolean = false) {
+        if (_dataLocal.value == null || forceRefresh) {
+            viewModelScope.launch {
+                try {
+                    _dataLocal.value = Resource.Loading()
+                    repository.getProductRoom().collect { response ->
+                        if (response.isEmpty()) {
+                            _dataLocal.postValue(Resource.Empty("No data found"))
+                        } else {
+                            _dataLocal.postValue(Resource.Success(response))
+                        }
+                    }
+                } catch (e: Exception) {
+                    _data.postValue(Resource.Error("Unknown error: ${e.message}"))
+                }
+            }
+        }
+    }
+
+    //Ini function dan LiveData untuk aksi createProductLocal
+    private val _createLocalStatus = MutableLiveData<Resource<Unit>>() // Status create
+    val createLocalStatus: LiveData<Resource<Unit>> = _createLocalStatus
+    fun createProductLocal(product: ProductEntity) {
+        viewModelScope.launch {
+            try {
+                _createLocalStatus.value = Resource.Loading()
+
+                repository.insertProductRoom(product)
+
+                _createLocalStatus.postValue(Resource.Success(Unit))
+            } catch (e: Exception) {
+                _data.postValue(Resource.Error("Unknown error: ${e.message}"))
+            }
+
         }
     }
 }

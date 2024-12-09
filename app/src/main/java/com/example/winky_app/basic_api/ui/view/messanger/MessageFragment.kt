@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.example.winky_app.R
+import com.example.winky_app.basic_api.ui.adapter.MessageTabAdapter
 import com.example.winky_app.databinding.FragmentMessageBinding
 import com.google.android.material.tabs.TabLayoutMediator
 

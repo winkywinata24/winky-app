@@ -1,5 +1,6 @@
 package com.example.winky_app.basic_api.ui.view.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +12,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Visibility
+import com.example.winky_app.FirstActivity
+import com.example.winky_app.LoginActivity
 import com.example.winky_app.R
 import com.example.winky_app.basic_api.data.model.NewsHorizontalModel
 import com.example.winky_app.basic_api.data.network.RetrofitInstance
@@ -21,6 +24,7 @@ import com.example.winky_app.basic_api.ui.viewModel.UserViewModel
 import com.example.winky_app.basic_api.utils.Resource
 import com.example.winky_app.basic_api.utils.ViewModelFactory
 import com.example.winky_app.databinding.FragmentHomeBinding
+import com.example.winky_app.forgot_password.ForgotActivity
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -71,6 +75,8 @@ class HomeFragment : Fragment() {
 
         binding.includeHomeMenuGrid.menu1.setOnClickListener {
             Toast.makeText(context, "Anda Klik Menu 1", Toast.LENGTH_LONG).show()
+            val i = Intent(requireContext(), FirstActivity::class.java)
+            startActivity(i)
         }
         binding.includeHomeMenuGrid.menu2.setOnClickListener {
             Toast.makeText(context, "Anda Klik Menu 2", Toast.LENGTH_LONG).show()
